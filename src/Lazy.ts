@@ -4,8 +4,10 @@
 //  Project: https://github.com/agorshkov23/ag23-lazy-ts
 //  License: MIT
 
-/**Flag to globally disable lazy initialization. */
-declare var LAZY_OFF: boolean;
+interface Window {
+    /**Flag to globally disable lazy initialization. */
+    LAZY_OFF?: boolean;
+}
 
 module ag23 {
     /**Provides support for lazy initialization. */
@@ -16,7 +18,7 @@ module ag23 {
                 throw new Error("Argument valueFactory = " + valueFactory + " is not function");
 
             this._valueFactory = valueFactory;
-            if (LAZY_OFF === true)
+            if (window.LAZY_OFF && window.LAZY_OFF === true)
                 this.createValue();
         }
 
